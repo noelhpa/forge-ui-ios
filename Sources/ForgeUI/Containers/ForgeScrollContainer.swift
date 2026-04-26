@@ -8,25 +8,34 @@
 import SwiftUI
 
 public struct ForgeScrollContainer<Content: View>: View {
+    // MARK: Dimensions
+    private let forgeScrollContainerStackSpacing: CGFloat = 16
+    private let forgeScrollContainerHorizontalPadding: CGFloat = 16
+    private let forgeScrollContainerVerticalPadding: CGFloat = 20
 
+    // MARK: Properties
     private let content: Content
 
+    // MARK: Initializer
     public init(
         @ViewBuilder content: () -> Content
     ) {
         self.content = content()
     }
 
+    // MARK: Body
     public var body: some View {
         ScrollView {
-            VStack(spacing: 16) {
+            VStack(spacing: forgeScrollContainerStackSpacing) {
                 content
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 20)
+            .padding(.horizontal, forgeScrollContainerHorizontalPadding)
+            .padding(.vertical, forgeScrollContainerVerticalPadding)
         }
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     ForgeScrollContainer(content: {
